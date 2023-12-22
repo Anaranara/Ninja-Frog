@@ -23,15 +23,15 @@ public class Rockhead: MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            ani.SetTrigger("hit");
+        }
         if (collision.gameObject.CompareTag("Grounds"))
         {
             ani.SetTrigger("unhit");
-            RH.tag = "RH";
-            rb.bodyType= RigidbodyType2D.Static;
-        }
-        else if (collision.gameObject.CompareTag("Player"))
-        {
-            ani.SetTrigger("hit");
+            RH.tag = "Untagged";
+            rb.bodyType = RigidbodyType2D.Static;
         }
     }
 }

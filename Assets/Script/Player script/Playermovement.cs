@@ -19,7 +19,6 @@ public class Playermovement : MonoBehaviour
     [SerializeField] private AudioSource jumpsound;
     private enum movestate {idle,run,jump,fall};
     movestate st;
-    private bool grounds = false;
 
     private void Start()
     {
@@ -37,7 +36,7 @@ public class Playermovement : MonoBehaviour
         {
             rb.velocity = new Vector2(x * speed, rb.velocity.y);
         }
-        if (Input.GetKeyDown("w") && grounds)
+        if (Input.GetKeyDown("w") && grounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpforce);
         }
@@ -47,7 +46,7 @@ public class Playermovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Grounds") || collision.gameObject.CompareTag("RH"))
         {
-            if (grounds)
+            if (grounded())
             {
                 Dust.Play();
             }
@@ -79,18 +78,8 @@ public class Playermovement : MonoBehaviour
         }
         ani.SetInteger("state", (int)st);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private bool grounded()
     {
-        if(collision.gameObject.layer == 9)
-        {
-            grounds = true;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == 9)
-        {
-            grounds = false;
-        }
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpable);
     }
 }
