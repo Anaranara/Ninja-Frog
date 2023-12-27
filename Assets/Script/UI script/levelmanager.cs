@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class levelmanager : MonoBehaviour
 {
@@ -22,6 +23,12 @@ public class levelmanager : MonoBehaviour
     }
     IEnumerator Loadscreen()
     {
+        if(Menu.currlvl >= 6)
+        {
+            Transis.SetTrigger("Endlvl");
+            yield return new WaitForSeconds(1.2f);
+            SceneManager.LoadScene("End");
+        }
         Transis.SetTrigger("Endlvl");
         yield return new WaitForSeconds(1.2f);
         t.text = "Coins: 0";

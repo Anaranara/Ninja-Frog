@@ -21,7 +21,6 @@ public class checkpoint : MonoBehaviour
             Vector2 add = new Vector2(respawn.position.x, respawn.position.y);
             animator.SetBool("Saved", true);
             Life.checkpoint = add;
-            Debug.Log("saved");
         }
     }
 }

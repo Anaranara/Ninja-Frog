@@ -48,8 +48,6 @@ public class Finish : MonoBehaviour
             Menu.unlocklvl++;
             PlayerPrefs.SetInt("unlocklvl", Menu.unlocklvl);
         }
-        
-
         if (star > PlayerPrefs.GetInt("star" + Menu.currlvl.ToString(), 0))
         {
             PlayerPrefs.SetInt("star" + Menu.currlvl.ToString(), star);
@@ -65,10 +63,6 @@ public class Finish : MonoBehaviour
             endpanel.SetActive(true);
             star_on.enabled = false;
             star_off.enabled = true;
-        }
-        if (Menu.currlvl >= 6)
-        {
-            SceneManager.LoadScene("End");
         }
     }
 }

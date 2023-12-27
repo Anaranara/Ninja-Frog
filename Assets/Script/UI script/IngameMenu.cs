@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class IngameMenu : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class IngameMenu : MonoBehaviour
     public GameObject pause;
     public GameObject pausebutton;
     public Animator Trans;
+    [SerializeField] private TextMeshProUGUI T;
     // Update is called once per frame
     void Update()
     {
@@ -68,6 +70,7 @@ public class IngameMenu : MonoBehaviour
         Trans.SetTrigger("Endlvl");
         yield return new WaitForSeconds(1.2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Itemcollector.coins = 0;
+        T.text = "Coins: 0";
     }
-
 }
